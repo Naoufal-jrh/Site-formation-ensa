@@ -1,5 +1,6 @@
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { format } from "date-fns";
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -17,3 +18,11 @@ export function removeExtension(fileName) {
   // If no extension found or the dot is the first character (hidden file), return the original file name
   return fileName;
 }
+
+export const formatDate = (date) => {
+  const formattedDate = new Date(date);
+  return {
+    date: format(formattedDate, "PP"),
+    time: format(formattedDate, "p"),
+  };
+};

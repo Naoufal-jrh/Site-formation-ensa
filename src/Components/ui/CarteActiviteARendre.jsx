@@ -1,22 +1,17 @@
 "use client";
 import Link from "next/link";
 import { useStore } from "@/store/zustand";
+import { formatDate } from "@/lib/utils";
 
 function CarteActiviteARendre({ data }) {
   const { title, slug, module, delais, rendu } = data;
-  // Extraire la date au format YYYY-MM-DD
-  const date_delais = new Date(delais).toISOString().split("T")[0];
-  // Extraire l'heure au format HH:MM:SS
-  const time_delais = new Date(delais)
-    .toISOString()
-    .split("T")[1]
-    .split(".")[0];
+  const formatedDate = formatDate(delais);
   const role = useStore((state) => state.userRole);
 
   const ouvert = new Date() < new Date(delais);
 
   return (
-    <div className="border-b py-2 flex flex-col gap-2">
+    <div className="flex flex-col gap-2 border-b py-2">
       <div className="flex flex-row justify-between">
         <Link
           href={"/my/travail-a-rendre/" + slug}
@@ -40,7 +35,7 @@ function CarteActiviteARendre({ data }) {
       <div className="flex flex-row justify-between text-sm">
         <span className="text-gray-500 font-semibold">Dernier Délais :</span>
         <span className="text-muted-foreground">
-          {date_delais} {time_delais}
+          {formatedDate.date} {formatedDate.time}
         </span>
       </div>
     </div>

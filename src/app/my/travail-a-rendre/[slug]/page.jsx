@@ -13,14 +13,12 @@ import Link from "next/link";
 import { useStore } from "@/store/zustand";
 import { useEffect, useState } from "react";
 import Loader from "@/app/loading";
-import { Input } from "@/Components/ui/input";
 import { Trash2 } from "lucide-react";
 import SubmissionsTable from "@/Components/Sections/SubmissionsTable";
 import FormAddSubmission from "@/Components/Forms/FormAddSubmission";
 import axios from "axios";
 import UserRoles from "@/schema/userRoles";
 import RessourceLink from "@/Components/ui/ressourceLink";
-import { set } from "mongoose";
 
 function TravailDetail({ params }) {
   const role = useStore((state) => state.userRole);
@@ -80,7 +78,7 @@ function TravailDetail({ params }) {
   }, [studentRessources]);
   if (!travailAR) return <Loader />;
 
-  const { title, detail, module, delais, rendu, ressources } = travailAR;
+  const { title, detail, module, delais, ressources } = travailAR;
   const courSlug = module.slug;
   const cours = module.name;
 

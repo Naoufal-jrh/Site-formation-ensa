@@ -1,4 +1,5 @@
 import { Poppins } from "next/font/google";
+
 import "../styles/globals.css";
 import NavBar from "../Components/Sections/NavBar";
 import Footer from "../Components/Sections/Footer";
@@ -6,7 +7,7 @@ import { Toaster } from "@/Components/ui/toaster";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const poppins = Poppins({
-  weight: ["400", "700"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",

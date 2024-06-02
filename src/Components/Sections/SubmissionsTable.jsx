@@ -25,17 +25,10 @@ import { useRouter } from "next/navigation";
 import { Skeleton } from "../ui/extension/skeleton";
 import { format } from "date-fns";
 import RessourceLink from "../ui/ressourceLink";
+import { formatDate } from "@/lib/utils";
 
 export default function SubmissionsTable({ submissions, loading }) {
   const router = useRouter();
-
-  const formatDate = (date) => {
-    const formattedDate = new Date(date);
-    return {
-      date: format(formattedDate, "PP"),
-      time: format(formattedDate, "p"),
-    };
-  };
 
   return (
     <Table>

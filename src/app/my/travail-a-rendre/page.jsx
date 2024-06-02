@@ -104,7 +104,12 @@ function TravailArendre() {
           <p>Aucune activité à rendre pour le moment.</p>
         ) : (
           paginatedTravailAR.map((todo, index) => (
-            <CarteTravailAR key={index} data={todo} role={role} />
+            <CarteTravailAR
+              key={index}
+              data={todo}
+              role={role}
+              variant="card"
+            />
           ))
         )}
       </div>

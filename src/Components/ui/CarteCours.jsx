@@ -5,7 +5,21 @@ import { SkeletonCard } from "@/Components/ui/SkeletonCard";
 import Image from "next/image";
 
 function CarteCours({ data }) {
-  const { coverImage, name: courseName, progress, slug, prof } = data;
+  const {
+    coverImage,
+    name: courseName,
+    progress,
+    slug,
+    prof,
+    chapitres,
+    objectif,
+  } = data;
+  const numChapitres = chapitres.length;
+  const numRessources = chapitres.reduce(
+    (acc, curr) => acc + curr.ressources.length,
+    0
+  );
+  const objectifSummary = objectif ? objectif.slice(0, 60) + "..." : "";
 
   if (!data || data.length == 0) return <SkeletonCard />;
 
@@ -30,7 +44,7 @@ function CarteCours({ data }) {
                 0
               )}${prof.lastname.charAt(0)}`}</AvatarFallback>
             </Avatar>
-            <span id="nom-prof" className="font-semibold text-white text-sm">
+            <span id="nom-prof" className="font-medium text-white text-md">
               {`${prof.firstname} ${prof.lastname}`}
             </span>
           </div>
@@ -40,9 +54,19 @@ function CarteCours({ data }) {
       </div>
 
       <div className="px-4 py-4 mt-5 ">
-        <h1 id="cours" className="font-bold">
+        <h1 id="cours" className="font-semibold">
           {courseName}
         </h1>
+        {numChapitres > 0 && (
+          <p id="chapitres" className="text-xs text-gray-500">
+            {numChapitres} chapitres - {numRessources} ressources
+          </p>
+        )}
+        {objectifSummary && (
+          <p id="objectif" className="text-sm mt-2">
+            {objectifSummary}
+          </p>
+        )}
         <div className="flex flex-col items-end mt-2">
           <span className="text-xs font-semibold">{progress}%</span>
           <Progress value={progress} className="h-2" />
